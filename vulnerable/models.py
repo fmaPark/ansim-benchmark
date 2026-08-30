@@ -1,11 +1,6 @@
-"""P10 — 보유기간이 지난 개인정보의 정리 경로 부재 (0414 §7.3.5).
+"""P10 — 보유기간이 지난 개인정보의 정리 경로 부재 (0414 §7.3.5)."""
 
-모델은 개인정보 컬럼을 들고 있으나 저장소 어디에도 그 경로가 없다.
-"""
-
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+db = None      # 실제 ORM 핸들은 애플리케이션이 주입한다
 
 
 class Member(db.Model):

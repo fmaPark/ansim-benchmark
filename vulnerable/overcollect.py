@@ -3,9 +3,6 @@
 P1은 저장소 전체의 수집 필드 집합에서 합성된다. 이 파일이 그 목록을 넓힌다.
 """
 
-from flask import request
-
-
 def newsletter_form():
     return {
         "name": request.form["name"],

@@ -24,13 +24,11 @@ jobs:
         with:
           path: benchmark
 
-      # TODO: ansim-code의 feat/m7-verification이 main에 머지되면 ref를 main으로 되돌린다.
-      #       (check_invariants.py가 아직 main에 없어서 임시로 브랜치를 가리킨다)
       - name: 안심코드 체크아웃 (검사 스크립트)
         uses: actions/checkout@v4
         with:
           repository: fmaPark/ansim-code
-          ref: feat/m7-verification
+          ref: main
           path: ansim-code
 
       - uses: actions/setup-python@v5

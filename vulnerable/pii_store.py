@@ -1,17 +1,17 @@
-"""P6 · SEC-05 — 개인정보 평문 저장 (0414 §7.3.4).
+"""P6 해소 — 개인정보를 해시로 변환해 저장한다 (0414 §7.3.4 충족).
 
-P6: 주민등록번호를 암호화·해시 없이 그대로 DB에 적재한다.
-SEC-05: 체크섬을 통과하는 합성 주민등록번호 리터럴이 소스에 남아 있다.
+v1-danger에서 평문 적재와 리터럴 주민등록번호를 걷어낸 상태다.
 """
 
-SEED_RRN = "900101-1234568"
+import hashlib
+
+
+def _digest(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
 def save_member(conn, nickname, rrn):
+    hashed = _digest(rrn)
     cur = conn.cursor()
-    cur.execute("INSERT INTO members (nickname, rrn) VALUES (?, ?)", (nickname, rrn))
+    cur.execute("INSERT INTO members (nickname, rrn_hash) VALUES (?, ?)", (nickname, hashed))
     conn.commit()
-
-
-def seed(conn):
-    save_member(conn, "hong", SEED_RRN)

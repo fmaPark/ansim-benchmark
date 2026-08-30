@@ -5,9 +5,8 @@
   "description": "JS side of the AnsimCode rule benchmark",
   "dependencies": {
     "lodash": "4.17.15",
-    "next": "14.2.0",
     "express": "4.18.2",
     "cors": "2.8.5",
-    "mysql2": "3.6.0"
+    "mysql2": "3.9.8"
   }
 }

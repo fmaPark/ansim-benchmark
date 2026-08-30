@@ -1,0 +1,41 @@
+name: invariants
+
+# 저장소 전체 불변식(명세 §1.3) 자동 검사.
+# 검사 스크립트는 여기가 아니라 안심코드 저장소에 산다 — 스크립트가 품는 정규식 리터럴이
+# 이 저장소 안에 있으면 자기 소스가 P8·P9·P10을 마스킹하기 때문이다.
+#
+# 등급 시나리오 태그(v1-danger·v2-warning·v3-safe)는 검사 대상이 아니다.
+# v3-safe는 로깅·처리방침·삭제 경로를 **일부러** 추가해 확정 발견을 없앤 트리라
+# 불변식을 의도적으로 깬다. 그래서 main 브랜치 push·PR에서만 돈다.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 벤치마크 체크아웃
+        uses: actions/checkout@v4
+        with:
+          path: benchmark
+
+      # TODO: ansim-code의 feat/m7-verification이 main에 머지되면 ref를 main으로 되돌린다.
+      #       (check_invariants.py가 아직 main에 없어서 임시로 브랜치를 가리킨다)
+      - name: 안심코드 체크아웃 (검사 스크립트)
+        uses: actions/checkout@v4
+        with:
+          repository: fmaPark/ansim-code
+          ref: feat/m7-verification
+          path: ansim-code
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 불변식 검사
+        run: python ansim-code/verification/check_invariants.py benchmark

@@ -1,0 +1,10 @@
+"""SEC-01·SEC-04 — 소스에 하드코딩된 자격증명 (0259 §9.5).
+
+SEC-01: 실형식 고엔트로피 토큰 리터럴
+SEC-04: AWS 액세스 키 ID + 시크릿 쌍
+"""
+
+SERVICE_TOKEN = "ghp_1a2B3c4D5e6F7g8H9i0JkLmNoPqRsTuVwXyZ"
+
+AWS_ACCESS_KEY_ID = "AKIA4KJQZ7XFB2WNTC5DX"
+AWS_SECRET_ACCESS_KEY = "hT9vLmQ2pR8sXcW4nZ6bY1dK3fA7gJ5uE0iO2rTq"

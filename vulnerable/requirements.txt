@@ -1,0 +1,10 @@
+Django==3.2.12
+requests==2.28.0
+Flask==0.12.2
+six==1.10.0
+PyMuPDF==1.18.0
+beautifulsoup4==4.11.1
+flask-sqlalchemy==2.5.1
+flask-login==0.6.2
+flask-cors>=1.0
+somelib @ git+https://github.com/ansim-benchmark/somelib.git
